@@ -1,18 +1,18 @@
-# &nbsp;		Docker Cheat Sheet
+#  		Docker Cheat Sheet
 
-1. ##### To run Docker image 
+1. ##### To run Docker image
 
-###### &nbsp;	
+######  
 
-###### &nbsp;	docker run <image name>
-
-
-
-#### 2\. To check images 
+######  	docker run <image name>
 
 
 
-###### &nbsp;	docker images
+#### 2\. To check images
+
+
+
+######  	docker images
 
 
 
@@ -44,9 +44,9 @@
 
 
 
-######  	docker ps -a  
+######  	docker ps -a
 
-###### &nbsp;	docker ps 
+######  	docker ps
 
 
 
@@ -68,7 +68,7 @@
 
 
 
-##### 7\. To go inside docker container 
+##### 7\. To go inside docker container
 
 
 
@@ -130,7 +130,7 @@
 
 
 
-######  	docker commit 
+######  	docker commit
 
 ##### 
 
@@ -146,7 +146,7 @@
 
 
 
-######  	docker copy 
+######  	docker copy
 
 
 
@@ -157,4 +157,28 @@
 ######  	docker logs  <Container Name>
 
 
+
+##### 18\. To give storage docker container
+
+
+
+######  	docker volume
+
+
+
+##### 19\. To build docker image
+
+
+
+######  	docker build -t <image name> <path of the image>/.
+
+
+
+##### 20\. To create custom network in docker 
+
+
+
+######  	docker network create <network-name>
+
+&nbsp;	
 
