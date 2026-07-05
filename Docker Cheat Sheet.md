@@ -172,59 +172,59 @@
 
  
 
-&nbsp;	First create storage
-	docker volume create <volume name >
+ 	First create storage
+docker volume create <volume name >
 ---
 
-###### &nbsp;	docker run -v storage name path    <image name>
+######  	docker run -v storage name path    <image name>
 
- 	
+ 
 
-###### &nbsp;	To delete the volume 
+######  	To delete the volume
 
-&nbsp;	
+ 
 
-###### &nbsp;	   docker volume rm <volume name>
+######  	   docker volume rm <volume name>
 
-&nbsp;		
+ 
 
 
 
-###### &nbsp;	  3 types of volume and there commands 
+######  	  3 types of volume and there commands
 
-###### &nbsp;		
+######  
 
-&nbsp;		Named Volume 
-		
+ 		Named Volume
+
 ---
 
-###### &nbsp;		docker run -v <name of the volume >:<container storage path >
+######  		docker run -v <name of the volume >:<container storage path >
 
 ###### 
 
-###### &nbsp;		Anonymous Volume 
+######  		Anonymous Volume
 
-###### &nbsp;		
+######  
 
-###### &nbsp;		docker run -v Mount\_PATH
+######  		docker run -v Mount\_PATH
 
 ###### 
 
-###### &nbsp;		Bind Mount 
+######  		Bind Mount
 
-###### &nbsp;		
+######  
 
-&nbsp;		docker run -v HOST\_PATH:CONTAINER\_PATH
-	  
+ 		docker run -v HOST\_PATH:CONTAINER\_PATH
+
 ---
 
-&nbsp;	   To delete unallocated volume 
-		
+ 	   To delete unallocated volume
+
 ---
 
-###### &nbsp;		docker volume prune
+######  		docker volume prune
 
-&nbsp;				
+ 
 
 
 
@@ -238,7 +238,7 @@
 
 
 
-##### 20\. To create custom network in docker/list docker network
+##### 20\. To create/delete custom network in docker/list docker network
 
 
 
@@ -246,7 +246,7 @@
 
 ######  	docker network ls
 
-##### 
+##### &nbsp;     docker network rm my-network
 
 ##### 21\. To execute commands in a running container (Troubleshoot Commands)
 
@@ -274,7 +274,7 @@
 
 ##### 
 
-##### 24\. Mount command in docker 
+##### 24\. Mount command in docker
 
 
 
@@ -282,5 +282,13 @@
 
 
 
-######  
+##### 25\. Tag command in docker
+
+
+
+######  	docker tag <image name> <tag name>
+
+
+
+###### &nbsp;sudo usermod -aG docker $USER 
 

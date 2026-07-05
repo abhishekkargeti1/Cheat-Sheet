@@ -1,12 +1,38 @@
-# &nbsp;		Maven Cheat Sheet
+#  		              Maven Cheat Sheet
 
 ##### 
 
-##### &nbsp;1. To build project without Test
+######  1. To build project without Test
 
-&nbsp;		
+ 
 
-###### &nbsp;	$env:JAVA\_HOME="C:\\Program Files\\Java\\jdk-17"
+######  	$env:JAVA\_HOME="C:\\Program Files\\Java\\jdk-17"
 
-###### &nbsp;	.\\mvnw.cmd clean install -DskipTests
+######  	.\\mvnw.cmd clean install -DskipTests
+
+
+
+###### &nbsp;**2. To run project** 
+
+ 
+
+######  	mvn spring-boot:run
+
+
+
+
+
+######  **3. To clean project**
+
+ 
+
+######  	mvn clean package
+
+
+
+
+
+&nbsp; 
+
+
 
