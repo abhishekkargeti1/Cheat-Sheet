@@ -196,7 +196,7 @@ docker volume create <volume name >
 
  		Named Volume
 
----
+\---
 
 ######  		docker run -v <name of the volume >:<container storage path >
 
@@ -216,11 +216,11 @@ docker volume create <volume name >
 
  		docker run -v HOST\_PATH:CONTAINER\_PATH
 
----
+\---
 
  	   To delete unallocated volume
 
----
+\---
 
 ######  		docker volume prune
 
@@ -246,7 +246,7 @@ docker volume create <volume name >
 
 ######  	docker network ls
 
-##### &nbsp;     docker network rm my-network
+#####       docker network rm my-network
 
 ##### 21\. To execute commands in a running container (Troubleshoot Commands)
 
@@ -290,5 +290,5 @@ docker volume create <volume name >
 
 
 
-###### &nbsp;sudo usermod -aG docker $USER 
+######   
 

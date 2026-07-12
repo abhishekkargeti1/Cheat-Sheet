@@ -1,4 +1,4 @@
-# &nbsp;                		Git Cheat Sheet
+#                  		Git Cheat Sheet
 
 ###### 
 
@@ -26,7 +26,7 @@ git status
 
 
 
-git add 
+git add
 
 
 
@@ -61,7 +61,7 @@ git log
 
 
 
-###### 2\. Branch Commands 
+###### 2\. Branch Commands
 
 
 
@@ -84,7 +84,7 @@ git log
 
 
 
-or 
+or
 
 
 
@@ -98,19 +98,19 @@ Create a Pull Request on GitHub
 
 Case 1 To change staged(add) changes
 
-&nbsp;	git reset "File name"
+ 	git reset "File name"
 
-&nbsp;	git restore "File Name"
+ 	git restore "File Name"
 
-&nbsp;	git reset 
+ 	git reset
 
-&nbsp;	git restore .
+ 	git restore .
 
 
 
 Case 2 To change commited changes (for one commit)
 
-&nbsp;	git reset HEAD~1
+ 	git reset HEAD\~1
 
 
 
@@ -118,13 +118,5 @@ Case 2 To change commited changes (for many commit)
 
  	git reset "commit hash "
 
-&nbsp;	git reset --hard "commit hash "
-
-
-
-
-
-
-
-
+ 	git reset --hard "commit hash "
 

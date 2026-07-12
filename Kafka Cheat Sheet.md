@@ -28,7 +28,7 @@
 
 
 
-##### **Command to list the topic** 
+##### **Command to list the topic**
 
 
 
@@ -49,8 +49,4 @@
 
 
 ###### bin\\windows\\kafka-console-consumer.bat --topic myfirst-topic --from-beginning --bootstrap-server localhost:9092
-
-
-
-
 
