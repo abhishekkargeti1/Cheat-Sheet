@@ -290,5 +290,5 @@ docker volume create <volume name >
 
 
 
-######   
+######   docker exec myauthserviceapp env | grep DB\_
 
