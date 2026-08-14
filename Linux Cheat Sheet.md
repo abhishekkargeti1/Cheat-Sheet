@@ -144,7 +144,7 @@ ssh-keygen (To create public /private key )
 
 
 
-&#x20;(To create any hardlink of any file) ln  file location  name of the softlink  (Hardlink is not delete if source is delete)
+&#x20;(To create any hardlink of any file) ln  file location  name of the hardlink  (Hardlink is not delete if source is delete)
 
 
 
