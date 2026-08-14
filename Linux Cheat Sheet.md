@@ -242,7 +242,7 @@ ssh-keygen (To create public /private key )
 
 &#x20;(To delete the group) sudo groupdel groupname
 
-File Premission chat 
+File Permission chart 
 
 
 
@@ -277,4 +277,118 @@ File Premission chat
 
 
 (To change the group of the file ) chgrp groupname filename.extension
+
+
+
+(To zip any non empty  folder) zip -r zipfoldername actualfoldername
+
+
+
+(To zip any file) zip  zipfilename actualfilename
+
+
+
+(To compress tar file/folder) tar -cvzf zipedfile/foldername actualfolder/filename
+
+
+
+(To decompress tar file/folder) tar -xvzf  zipedfile/foldername
+
+
+
+(To send file from local system to server )  scp -i "Private Key Path " "Source File" public DNS:"Destination of the File"(in local system)
+
+
+
+(To send file from server to local system )  scp -i "Private Key Path "  public DNS: "Source File Location" "Destination path"(in local system)
+
+
+
+(To connect server folder and local folder together) rsync -e "ssh -i Private Key Path " -avz FolderName public DNS:Location of the source folder
+
+
+
+
+
+Networking Commands
+
+
+
+(To check internet or server is working ) ping Ip address/domain name if the website
+
+
+
+(TO check the network status )netstat or ss
+
+
+
+(To check the net interface) ifconfig
+
+
+
+(To check the route of the ping ) traceroute Ip address/domain name of the website
+
+
+
+(To check the route of the ping ) tracepath Ip address/domain name of the website
+
+
+
+(This command is the combination of ping and tracepath ) mtr Ip address/domain name of the website
+
+
+
+(To get the details of the domain ) nslookup domain name of the website
+
+
+
+(To get the details of the domain with port ) telnet domain name of the website port
+
+
+
+(To change the hostname of the system) hostname new hostname (Host file path ) /etc/hosts
+
+
+
+(TO check the ip of the system) ip address show
+
+
+
+(To check the wireless connection ) iwconfig 
+
+
+
+(To get the host details of the domain ) dig hostname
+
+
+
+(To get the host details of the domain ) whois hostname
+
+&#x20;
+
+(To check the mac address of the device) arp
+
+
+
+(To check the status of the interface) ifplugstatus
+
+
+
+(To hit any endpoint) curl -X GET endpoint | jq
+
+
+
+(TO download any thing from internet ) weget url
+
+
+
+(To run any command in equal interval ) watch command 
+
+
+
+(TO check number of ports which are open ) nmap -v ip address
+
+
+
+(To check the route table ) route
 
