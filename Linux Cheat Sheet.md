@@ -392,3 +392,69 @@ Networking Commands
 
 (To check the route table ) route
 
+
+
+
+
+Advance Command 
+
+
+
+(To manipulate any file data ) awk  (Awk need Sorted data) 
+
+
+
+awk '{print $colunm number}' logfilename
+
+
+
+awk '/filter(write any key word awk will find that from the file)/{print $colunm number}' logfilename.log
+
+
+
+awk '{print $colunm number}' logfilename > newlogfile.log  (To save the extracted log to new file )
+
+
+
+awk '/filter/{count++}END{print count++}' logfilename (To find the number of occurrence of a word of a line)
+
+
+
+awk '$2 >= "07:00:00" \&\& $2 <= "07:52:07" \&\& $3 =="INFO" {print $1,$2,$3,$4}' log1.log  (We can put condition like this also in awk)
+
+
+
+
+
+
+
+(To manipulate any file data ) sed (Sed doesn't need sorted or structured data)
+
+
+
+
+
+sed -n /find the word in the file /p log1.log  (To or search any particular word/line in the file)
+
+
+
+&#x20;sed 's/Word to be replaced/With new Word/g' newlogfile.log   (To replace any word in the file)
+
+
+
+
+
+
+
+(To manipulate any file data ) grep 
+
+
+
+
+
+grep -i word to find in the file filename.extension (-i is for case insentitive)
+
+
+
+grep -i -c word to find in the file filename.extension (-c is for word count)
+
