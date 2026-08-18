@@ -1,10 +1,10 @@
-#  			       Linux Cheat Sheet
+#  		  Linux Cheat Sheet
 
 
 
 
 
-
+sudo usermod -aG docker $USER \&\& newgrp docker
 
 ###### &#x20;
 
@@ -200,7 +200,7 @@ ssh-keygen (To create public /private key )
 
 &#x20;
 
-&#x20;(To install any software) sudo apt install software name 
+&#x20;(To install any software) sudo apt install software name
 
 
 
@@ -220,11 +220,11 @@ ssh-keygen (To create public /private key )
 
 
 
-&#x20;(To check the list of user) sudo cat /etc/passwd	
+&#x20;(To check the list of user) sudo cat /etc/passwd
 
 &#x20;
 
-&#x20;(To create a group ) sudo groupadd group name 
+&#x20;(To create a group ) sudo groupadd group name
 
 &#x09;
 
@@ -242,7 +242,7 @@ ssh-keygen (To create public /private key )
 
 &#x20;(To delete the group) sudo groupdel groupname
 
-File Permission chart 
+File Permission chart
 
 
 
@@ -354,7 +354,7 @@ Networking Commands
 
 
 
-(To check the wireless connection ) iwconfig 
+(To check the wireless connection ) iwconfig
 
 
 
@@ -382,7 +382,7 @@ Networking Commands
 
 
 
-(To run any command in equal interval ) watch command 
+(To run any command in equal interval ) watch command
 
 
 
@@ -396,11 +396,11 @@ Networking Commands
 
 
 
-Advance Command 
+Advance Command
 
 
 
-(To manipulate any file data ) awk  (Awk need Sorted data) 
+(To manipulate any file data ) awk  (Awk need Sorted data)
 
 
 
@@ -446,7 +446,7 @@ sed -n /find the word in the file /p log1.log  (To or search any particular word
 
 
 
-(To manipulate any file data ) grep 
+(To manipulate any file data ) grep
 
 
 

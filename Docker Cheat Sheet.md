@@ -1,4 +1,4 @@
-#  		             Docker Cheat Sheet
+#  		  Docker Cheat Sheet
 
 1. ##### To run Docker image
 

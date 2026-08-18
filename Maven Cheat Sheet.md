@@ -1,4 +1,4 @@
-#  		              Maven Cheat Sheet
+#  		   Maven Cheat Sheet
 
 ##### 
 
