@@ -321,3 +321,13 @@ spec:
 
 
 
+(To get info about pods) kubectl get pods -n <namespace> -o wide 
+
+
+
+(TO create multiple pods )kubectl scale deployment/<Pod Name> -n <namespace> --replicas=90
+
+
+
+(To set new image version on running pods ) kubectl set image deployment/<deployment-name> <container-name>=<new-image> -n namespace
+
