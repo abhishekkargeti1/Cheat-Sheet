@@ -308,7 +308,7 @@ File Permission chart
 
 
 
-
+(To beautify json ) command | jq
 
 Networking Commands
 

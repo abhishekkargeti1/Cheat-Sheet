@@ -88,6 +88,8 @@ kubectl get nodes --context <cluster name> (To change the context )
 (To delete any pod ) kubectl delete pod <Pod name>
 
 
+
+
 (To create Ns with manifest file )
 
 1. Create One yml file 
@@ -159,7 +161,11 @@ kubectl describe pod/<pod name> -n <name of the namespace>
 
 
 
+(To delete any pod with manifest file)
 
+
+
+kubectl delete -f <deployment filename>
 
 \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
