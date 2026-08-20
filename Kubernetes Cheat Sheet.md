@@ -40,7 +40,7 @@
 
 
 
-**(To start Minikube ) minikube start --driver=docker --vm=true** 
+**(To start Minikube ) minikube start --driver=docker --vm=true**
 
 
 
@@ -63,6 +63,7 @@ kubectl get nodes --context <cluster name> (To change the context )
 
 
 (To get default node) kubectl get nodes
+
 
 
 (To get namespaces list ) kubectl get ns / namespace
@@ -90,10 +91,11 @@ kubectl get nodes --context <cluster name> (To change the context )
 
 
 
+
 (To create Ns with manifest file )
 
-1. Create One yml file 
-	kind: Namespace
+1. Create One yml file
+kind: Namespace
 
 &#x09;apiVersion : v1
 
@@ -141,7 +143,7 @@ spec:
 
 
 
-2\. kubectl apply -f <name of the yml file> 
+2\. kubectl apply -f <name of the yml file>
 
 
 
@@ -171,7 +173,7 @@ kubectl delete -f <deployment filename>
 
 
 
-**Deployed Auth Service** 
+**Deployed Auth Service**
 
 ubuntu@ip-172-31-29-124:\~/authserver$ cat mysl\_service.yml
 
@@ -327,7 +329,7 @@ spec:
 
 
 
-(To get info about pods) kubectl get pods -n <namespace> -o wide 
+(To get info about pods) kubectl get pods -n <namespace> -o wide
 
 
 
@@ -336,4 +338,12 @@ spec:
 
 
 (To set new image version on running pods ) kubectl set image deployment/<deployment-name> <container-name>=<new-image> -n namespace
+
+
+
+(To get everything which inside the namespace) kubectl get all -n <namespace name>
+
+
+
+(To get the ip and port of the pod )  kubectl get svc -n <namespace>
 
