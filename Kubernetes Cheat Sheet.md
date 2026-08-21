@@ -347,3 +347,59 @@ spec:
 
 (To get the ip and port of the pod )  kubectl get svc -n <namespace>
 
+
+
+(Port Forwarding Command) kubectl port-forward service/<name of the service yml file> -n namespace name  <Port binding> --address =0.0.0.0 
+
+
+
+
+
+(Ingress setup in kind cluster) 
+
+
+
+Step 1. kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
+
+
+
+apiVersion: networking.k8s.io/v1
+
+kind: Ingress
+
+metadata:
+
+&#x20; name: auth-server-ingress
+
+&#x20; namespace: authserver
+
+&#x20; annotations:
+
+&#x20;   nginx.ingress.kubernetes.io/rewrite-target: /$2
+
+spec:
+
+&#x20; rules:
+
+&#x20; - http:
+
+&#x20;     paths:
+
+&#x20;     - pathType: ImplementationSpecific
+
+&#x20;       path: /authservice(/|$)(.\*)
+
+&#x20;       backend:
+
+&#x20;         service:
+
+&#x20;           name: auth-server-service (This should the service name )
+
+&#x20;           port:
+
+&#x20;             number: 80
+
+
+
+
+
