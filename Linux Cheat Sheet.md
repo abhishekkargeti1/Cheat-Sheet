@@ -310,6 +310,12 @@ File Permission chart
 
 (To beautify json ) command | jq
 
+
+
+(To encode anything in base64) echo -n "1808" | base64
+
+
+
 Networking Commands
 
 
@@ -391,6 +397,8 @@ Networking Commands
 
 
 (To check the route table ) route
+
+
 
 
 

@@ -349,19 +349,139 @@ spec:
 
 
 
-(Port Forwarding Command) kubectl port-forward service/<name of the service yml file> -n namespace name  <Port binding> --address =0.0.0.0 
+(Port Forwarding Command) kubectl port-forward service/<name of the service yml file> -n namespace name  <Port binding> --address =0.0.0.0
 
 
 
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
-
-(Ingress setup in kind cluster) 
+(Ingress setup in kind cluster)
 
 
 
 Step 1. kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
 
 
+
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+
+
+
+
+
+
+
+### **Example of Stateful set with MySQL** 
+
+
+
+ubuntu@ip-172-31-29-124:\~/authserver$ cat mysl\_service.yml
+
+apiVersion: v1
+
+kind: Service
+
+metadata:
+
+&#x20; name: mysqlcontainer
+
+&#x20; namespace: authserver
+
+spec:
+
+&#x20; clusterIP: None
+
+&#x20; selector:
+
+&#x20;   app: mysql
+
+&#x20; ports:
+
+&#x20;   - port: 3306
+
+&#x20;     name: mysqlcontainer1
+
+&#x20;     targetPort: 3306
+
+ubuntu@ip-172-31-29-124:\~/authserver$ cat auth-server-database-deployment.yml
+
+apiVersion: apps/v1
+
+kind: StatefulSet
+
+metadata:
+
+&#x20; name: mysqlcontainer
+
+&#x20; namespace: authserver
+
+spec:
+
+&#x20; replicas: 1
+
+&#x20; selector:
+
+&#x20;   matchLabels:
+
+&#x20;     app: mysql
+
+&#x20; template:
+
+&#x20;   metadata:
+
+&#x20;     labels:
+
+&#x20;       app: mysql
+
+&#x20;   spec:
+
+&#x20;     containers:
+
+&#x20;       - name: mysql
+
+&#x20;         image: mysql:latest
+
+&#x20;         ports:
+
+&#x20;           - containerPort: 3306
+
+
+
+&#x20;         env:
+
+&#x20;           - name: MYSQL\_ROOT\_PASSWORD
+
+&#x20;             value: "1808"
+
+
+
+&#x20;           - name: MYSQL\_DATABASE
+
+&#x20;             value: "employees"
+
+&#x20;         volumeMounts:
+
+&#x20;           - name: mysql-storage
+
+&#x20;             mountPath: /var/lib/mysql
+
+&#x20;     volumes:
+
+&#x20;       - name: mysql-storage
+
+&#x20;         persistentVolumeClaim:
+
+&#x20;           claimName: mysql-pvc
+
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+
+
+
+### Example of Ingress 
+
+
+
+ubuntu@ip-172-31-29-124:\~/authserver$ cat ingress.yml
 
 apiVersion: networking.k8s.io/v1
 
@@ -393,11 +513,89 @@ spec:
 
 &#x20;         service:
 
-&#x20;           name: auth-server-service (This should the service name )
+&#x20;           name: auth-server-service
 
 &#x20;           port:
 
 &#x20;             number: 80
+
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+
+
+
+### Resource Allocation
+
+
+
+&#x20;spec:
+
+&#x20;     containers:
+
+&#x20;       - name: auth-server-app
+
+&#x20;         image: abhishekkargeti/authserviceimages
+
+&#x20;         ports:
+
+&#x20;           - containerPort: 8087
+
+&#x20;         resources:
+
+&#x20;           requests:
+
+&#x20;             memory: "200Mi"
+
+&#x20;             cpu: "250m"
+
+&#x20;           limits:
+
+&#x20;             memory: "300Mi"
+
+&#x20;             cpu: "500m"
+
+
+
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+
+
+
+
+
+(Taint and Tolerance)
+
+
+
+Taint - It means when we don't want to create any pod a particular node (For that we use Taint)
+
+
+
+
+
+(This command is to taint the node ) kubectl taint node <cluster node name > <any key example prod=true>:NoSchedule
+
+
+
+(This command is to untaint the node ) kubectl taint node <cluster node name > <any key example prod=true>:NoSchedule-
+
+
+
+
+
+Tolerance - It means when in special case if we have to run the pod on tainted node (For the we use Tolerance)
+
+
+
+&#x20; spec:
+
+&#x20;     tolerations:
+
+&#x20;       - key: "prod" 
+
+&#x20;         operator: "Equal"
+
+&#x20;         value: "true"
+
+&#x20;         effect: "NoSchedule"
 
 
 
