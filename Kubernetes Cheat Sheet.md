@@ -333,7 +333,7 @@ spec:
 
 
 
-(TO create multiple pods )kubectl scale deployment/<Pod Name> -n <namespace> --replicas=90
+(TO create multiple pods )kubectl scale deployment/<Deployment Name> -n <namespace> --replicas=90
 
 
 
@@ -349,7 +349,7 @@ spec:
 
 
 
-(Port Forwarding Command) kubectl port-forward service/<name of the service yml file> -n namespace name  <Port binding> --address =0.0.0.0
+(Port Forwarding Command) kubectl port-forward service/<name of the ingress service controller > -n namespace name  <Port binding> --address =0.0.0.0
 
 
 
@@ -371,7 +371,7 @@ Step 1. kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-ng
 
 
 
-### **Example of Stateful set with MySQL** 
+### **Example of Stateful set with MySQL**
 
 
 
@@ -477,7 +477,7 @@ spec:
 
 
 
-### Example of Ingress 
+### Example of Ingress
 
 
 
@@ -589,7 +589,7 @@ Tolerance - It means when in special case if we have to run the pod on tainted n
 
 &#x20;     tolerations:
 
-&#x20;       - key: "prod" 
+&#x20;       - key: "prod"
 
 &#x20;         operator: "Equal"
 
@@ -600,4 +600,209 @@ Tolerance - It means when in special case if we have to run the pod on tainted n
 
 
 
+
+(To run Load generator) kubectl run -it --tty load-generator --image=busybox -n apache-namespace /bin/sh
+
+
+
+
+
+
+
+(To get VPA we have to get files from github) 
+
+
+
+Step -1 git clone https://github.com/kubernetes/autoscaler.git
+
+Step -2 cd autoscaler/vertical-pod-autoscaler
+
+Step -3 install VPA (./hack/vpa-up.sh)
+
+Ste - 4 Create vpa.yml 
+
+
+
+kind: VerticalPodAutoscaler
+
+apiVersion: autoscaling.k8s.io/v1
+
+metadata:
+
+&#x20; name: apache-vpa
+
+&#x20; namespace: apache-namespace
+
+spec:
+
+&#x20; targetRef:
+
+&#x20;   apiVersion: apps/v1
+
+&#x20;   kind: Deployment
+
+&#x20;   name: apache-server-pod
+
+&#x20; updatePolicy:
+
+&#x20;   updateMode: "Auto"
+
+
+
+(To select a particular node where your pod should deploy ) we use the concept of node affinity 
+
+
+spec:
+
+&#x20; affinity:
+
+&#x20;   nodeAffinity:
+
+&#x20;     requiredDuringSchedulingIgnoredDuringExecution:
+
+&#x20;       nodeSelectorTerms:
+
+&#x20;       - matchExpressions:
+
+&#x20;         - key: topology.kubernetes.io/zone
+
+&#x20;           operator: In
+
+&#x20;           values:
+
+&#x20;           - antarctica-east1
+
+&#x20;           - antarctica-west1
+
+put this above config in pod spec. 
+
+
+
+
+
+(To check whoami ) kubectl auth whoami
+
+
+
+
+
+(To check other user access) kubectl auth can-i get pods -n <namespace name> --as=<other user name>
+
+(To check the other user access) kubectl auth can-i get pods -n <namespace name> --as=<other user name service account name>
+
+&#x20; 
+
+(RBAC in namespace)
+
+
+
+Step1 create a role
+
+Step2 create service account 
+
+Step3 create a role binding 
+
+
+
+
+
+(RBAC in Cluster)
+
+
+
+**(Take Reference From this GitHub https://github.com/LondheShubham153/kubestarter/tree/main/kind-cluster)**
+
+
+
+Step 1 **kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.7.0/aio/deploy/recommended.yaml**
+
+
+
+
+
+Step 2  dashboard-admin-user.yml
+
+
+
+Step 3 apply dashboard.yml
+
+
+
+Step 4 Create a token 
+
+kubectl -n kubernetes-dashboard create token admin-user
+
+
+
+Step 5 Expose Proxy 
+
+kubectl proxy --port=8001 --address=0.0.0.0 --accept-hosts='.\*'
+
+
+
+Step 6 hit on this url
+
+
+
+http://<Public Ip>:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/ 
+
+
+
+This above link is not going to working on your localmachine browser
+
+
+
+To get access of the Admin Dashboard on Local System  
+
+Follow these steps
+
+
+
+Step 1 kubectl get svc -n kubernetes-dashboard
+Step 2 kubectl -n kubernetes-dashboard port-forward svc/<Service name> 8443:443
+
+Step 3 ssh -i "C:\\path\\to\\your-key.pem" -L 8443:localhost:8443 ubuntu@YOUR\_EC2\_PUBLIC\_IP
+Step 4 https://localhost:8443 
+
+
+
+(Helm)
+
+
+
+Step 1 
+
+
+
+curl -fsSL -o get\_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-4
+
+chmod 700 get\_helm.sh
+
+./get\_helm.sh
+
+
+
+Step 2 helm create authserver-helm
+
+Step 3 vim value.yaml  (This is user to put values in the deployment,Service etc )
+
+Step 4 helm package .
+
+Step 4 helm install <Any Name you can give here> package helm file name -n <namespace name> --create-namespace. 
+
+
+
+(To upgrade any existing image )helm upgrade apache-dev <name of the helm packaged folder> -n <namespace>
+
+
+
+(To uninstall existing helm chart) helm uninstall <name of the helm deployment>
+
+
+
+(TO rollback to previous version through helm) helm rollback <helm-name> -n <namespace> (To find helm name use helm list)
+
+
+
+&#x09;				Use **Artifact Hub** to install any image by using helm 
 

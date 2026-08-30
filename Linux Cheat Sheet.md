@@ -300,7 +300,7 @@ File Permission chart
 
 
 
-(To send file from server to local system )  scp -i "Private Key Path "  public DNS: "Source File Location" "Destination path"(in local system)
+(To send file from server to local system )  scp -i "Private Key Path "  public DNS:"Source File Location" "Destination path"(in local system)
 
 
 
