@@ -609,7 +609,7 @@ Tolerance - It means when in special case if we have to run the pod on tainted n
 
 
 
-(To get VPA we have to get files from github) 
+(To get VPA we have to get files from github)
 
 
 
@@ -619,7 +619,7 @@ Step -2 cd autoscaler/vertical-pod-autoscaler
 
 Step -3 install VPA (./hack/vpa-up.sh)
 
-Ste - 4 Create vpa.yml 
+Ste - 4 Create vpa.yml
 
 
 
@@ -649,7 +649,8 @@ spec:
 
 
 
-(To select a particular node where your pod should deploy ) we use the concept of node affinity 
+(To select a particular node where your pod should deploy ) we use the concept of node affinity
+
 
 
 spec:
@@ -674,7 +675,7 @@ spec:
 
 &#x20;           - antarctica-west1
 
-put this above config in pod spec. 
+put this above config in pod spec.
 
 
 
@@ -690,7 +691,7 @@ put this above config in pod spec.
 
 (To check the other user access) kubectl auth can-i get pods -n <namespace name> --as=<other user name service account name>
 
-&#x20; 
+&#x20;
 
 (RBAC in namespace)
 
@@ -698,9 +699,9 @@ put this above config in pod spec.
 
 Step1 create a role
 
-Step2 create service account 
+Step2 create service account
 
-Step3 create a role binding 
+Step3 create a role binding
 
 
 
@@ -728,13 +729,13 @@ Step 3 apply dashboard.yml
 
 
 
-Step 4 Create a token 
+Step 4 Create a token
 
 kubectl -n kubernetes-dashboard create token admin-user
 
 
 
-Step 5 Expose Proxy 
+Step 5 Expose Proxy
 
 kubectl proxy --port=8001 --address=0.0.0.0 --accept-hosts='.\*'
 
@@ -744,15 +745,15 @@ Step 6 hit on this url
 
 
 
-http://<Public Ip>:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/ 
+http://<Public Ip>:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/
 
 
 
-This above link is not going to working on your localmachine browser
+This above link is not going to working on your local machine browser
 
 
 
-To get access of the Admin Dashboard on Local System  
+To get access of the Admin Dashboard on Local System
 
 Follow these steps
 
@@ -762,7 +763,7 @@ Step 1 kubectl get svc -n kubernetes-dashboard
 Step 2 kubectl -n kubernetes-dashboard port-forward svc/<Service name> 8443:443
 
 Step 3 ssh -i "C:\\path\\to\\your-key.pem" -L 8443:localhost:8443 ubuntu@YOUR\_EC2\_PUBLIC\_IP
-Step 4 https://localhost:8443 
+Step 4 https://localhost:8443
 
 
 
@@ -770,7 +771,7 @@ Step 4 https://localhost:8443
 
 
 
-Step 1 
+Step 1
 
 
 
@@ -788,7 +789,7 @@ Step 3 vim value.yaml  (This is user to put values in the deployment,Service etc
 
 Step 4 helm package .
 
-Step 4 helm install <Any Name you can give here> package helm file name -n <namespace name> --create-namespace. 
+Step 4 helm install <Any Name you can give here> package helm file name -n <namespace name> --create-namespace.
 
 
 
@@ -804,5 +805,71 @@ Step 4 helm install <Any Name you can give here> package helm file name -n <name
 
 
 
-&#x09;				Use **Artifact Hub** to install any image by using helm 
+&#x09;				Use **Artifact Hub** to install any image by using helm
+
+
+
+
+
+(Istio) (Refer to this link https://istio.io/latest/docs/setup/getting-started/ )
+
+
+
+curl -L https://istio.io/downloadIstio | sh -
+
+
+
+cd istio-1.30.4
+
+
+
+sudo cp istioctl to /usr/local/bin/istioctl
+
+
+
+istioctl install -f samples/bookinfo/demo-profile-no-gateways.yaml -y
+
+
+
+kubectl label namespace default istio-injection=enabled
+
+
+
+kubectl get ns -L istio-injection (To check istio is enable or not)
+
+
+
+kubectl apply -f samples/bookinfo/gateway-api/bookinfo-gateway.yaml
+
+
+
+kubectl annotate gateway bookinfo-gateway networking.istio.io/service-type=ClusterIP --namespace=default
+
+
+
+kubectl get gateway
+
+
+
+kubectl port-forward svc/bookinfo-gateway-istio 8080:80 --address=0.0.0.0
+
+
+
+
+
+**To open kaili Dashboard**
+
+
+
+kubectl apply -f samples/addons/kiali.yaml
+
+kubectl rollout status deployment/kiali -n istio-system
+
+istioctl dashboard kiali (if you want to access the dashboard in local machine add )  --browser=false
+
+
+
+ssh -i "C:\\path\\to\\your-key.pem" -L 20001:localhost:20001 ubuntu@YOUR\_EC2\_PUBLIC\_IP
+
+http://localhost:20001/kiali
 
