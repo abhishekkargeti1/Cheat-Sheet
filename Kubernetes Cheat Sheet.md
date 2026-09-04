@@ -24,7 +24,7 @@
 
 **To Create a Cluster with a Config File (kind create cluster --name=<Name of the cluster> --config=<Config file Path>)**
 
-
+**(To Delete Cluster)  kind delete cluster --name=<Name of the cluster>**
 
 **(To check the cluster info  ) kubectl cluster-info --context kind-<cluster name>**
 
