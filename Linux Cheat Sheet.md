@@ -54,6 +54,8 @@ ssh-keygen (To create public /private key )
 
 
 
+&#x20;(To search previous command ) ctrl+ r
+
 
 
 &#x20;(To check CPU Usage) Top
