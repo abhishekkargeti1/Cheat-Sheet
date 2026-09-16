@@ -1,4 +1,4 @@
-&#x09;	    ARGO CD Cheat Sheet
+# &#x09;	    ARGO CD Cheat Sheet
 
 
 
@@ -1024,7 +1024,7 @@ extensions	❌	❌	❌	❌	❌	❌	❌		✅
 
 
 
-###### EKS 
+###### EKS
 
 
 
@@ -1032,11 +1032,11 @@ extensions	❌	❌	❌	❌	❌	❌	❌		✅
 
 
 
-Step-1  create a new i am role and user 
+Step-1  create a new i am role and user
 
 
 
-Step -2 install aws cli 
+Step -2 install aws cli
 
 
 
@@ -1048,7 +1048,7 @@ Step 4 - eksctl installed (For linux)
 
 
 
-\# Linux/WSL 
+\# Linux/WSL
 
 curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl\_$(uname -s)\_amd64.tar.gz" | tar xz -C /tmp
 
@@ -1110,7 +1110,7 @@ eksctl version
 
 
 
-
+EKS and SSO with DEX
 
 
 
@@ -1268,7 +1268,7 @@ spec:
 
 &#x20;   server: https://acme-v02.api.letsencrypt.org/directory
 
-&#x20;   email: <your-email@example.com> # Replace with your email
+&#x20;   email: [your-email@example.com](mailto:your-email@example.com) # Replace with your email
 
 &#x20;   privateKeySecretRef:
 
@@ -1298,7 +1298,7 @@ spec:
 
 &#x20;   server: https://acme-staging-v02.api.letsencrypt.org/directory
 
-&#x20;   email: <your-email@example.com>  # Replace with your email
+&#x20;   email: [your-email@example.com](mailto:your-email@example.com)  # Replace with your email
 
 &#x20;   privateKeySecretRef:
 
@@ -1415,6 +1415,204 @@ Check certificate request status
 
 
 kubectl get certificate -n argocd
+
+
+
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+
+
+
+**Note To setup the SSO with DEX we should have SSL certificate first**
+
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+
+
+
+
+
+Home page url https://<Your Domain Name>
+
+
+
+Call back url https://<Your Domain Name>/api/dex/callback
+
+
+
+
+
+**Create argocd-github-secret.yaml**
+
+
+
+
+
+**apiVersion: v1**
+
+**kind: Secret**
+
+**metadata:**
+
+&#x20; **name: argocd-secret # Name of the secret**
+
+&#x20; **namespace: argocd   # Namespace where the secret will be created**
+
+&#x20; **labels:**
+
+&#x20;   **app.kubernetes.io/name: argocd-secret   # Label for identifying the secret**
+
+&#x20;   **app.kubernetes.io/part-of: argocd       # Label indicating this secret is part of ArgoCD**
+
+**type: Opaque # Indicates that the secret is of type Opaque (arbitrary user-defined data)**
+
+**stringData:**
+
+&#x20; **dex.github.clientId: <your-client-id>         # GitHub OAuth client ID for Dex**
+
+&#x20; **dex.github.clientSecret: <your-client-secret> # GitHub OAuth client secret for Dex**
+
+
+
+
+
+
+
+
+
+**Create argocd-github-cm.yaml**
+
+
+
+**apiVersion: v1**
+
+**kind: ConfigMap**
+
+**metadata:**
+
+&#x20; **name: argocd-cm**
+
+&#x20; **namespace: argocd**
+
+&#x20; **labels:**
+
+&#x20;   **app.kubernetes.io/name: argocd-cm  # Label for identifying the ConfigMap**
+
+&#x20;   **app.kubernetes.io/part-of: argocd  # Label indicating this ConfigMap is part of ArgoCD**
+
+**data:**
+
+&#x20; **# The ArgoCD server URL**
+
+&#x20; **url: https://<your-argocd-url>:8080**
+
+&#x20; **# Dex configuration for authentication**
+
+&#x20; **dex.config: |**
+
+&#x20;   **connectors:**
+
+&#x20;   **- type: github                # Use GitHub as the identity provider**
+
+&#x20;     **id: github                  # Connector ID**
+
+&#x20;     **name: GitHub                # Display name**
+
+&#x20;     **config:**
+
+&#x20;       **clientID: $dex.github.clientId         # GitHub OAuth app client ID (from secret)**
+
+&#x20;       **clientSecret: $dex.github.clientSecret # GitHub OAuth app client secret (from secret)**
+
+&#x20;       **orgs:**
+
+&#x20;       **- name: <your-github-org> # GitHub organization allowed to authenticate**
+
+
+
+
+
+
+
+
+
+**Create argocd-github-rbac.yaml**
+
+
+
+
+
+
+
+**apiVersion: v1**
+
+**kind: ConfigMap**
+
+**metadata:**
+
+&#x20; **name: argocd-rbac-cm**
+
+&#x20; **namespace: argocd**
+
+**data:**
+
+&#x20; **scopes: '\[groups, email]' # Specify the OIDC scopes to request from the identity provider**
+
+
+
+&#x20; **policy.csv: |**
+
+&#x20;   **# Define admin/operator permissions for repo-admin role**
+
+&#x20;   **p, role:repo-admin, applications, create, \*/\*, allow**
+
+&#x20;   **p, role:repo-admin, applications, get,    \*/\*, allow**  
+
+&#x20;   **p, role:repo-admin, applications, update, \*/\*, allow**   
+
+&#x20;   **p, role:repo-admin, applications, sync,   \*/\*, allow**   
+
+&#x20;   **p, role:repo-admin, applications, delete, \*/\*, allow**   
+
+&#x20;   **p, role:repo-admin, repositories, create, \*/\*, allow**   
+
+&#x20;   **p, role:repo-admin, repositories, \*, \*/\*, allow**        
+
+&#x20;   **p, role:repo-admin, projects, \*, \*, allow**              
+
+
+
+&#x20;   **# Bind by email (fallback)**
+
+&#x20;   **g, <your-github-email>, role:repo-admin**                
+
+
+
+&#x20;   **# Keep org binding for when it works**
+
+&#x20;   **g, <your-github-org>:members, role:repo-admin**         
+
+
+
+&#x20; **policy.default: role:readonly # Set default role to readonly for all other users**
+
+
+
+
+
+**kubectl rollout restart -n argocd deployment argocd-server**
+
+
+
+
+
+
+
+&#x20;
+
+
+
+
+
+
 
 
 
