@@ -1,4 +1,4 @@
-# &#x09;			AWS Cheat Sheet
+# &#x09;	    AWS Cheat Sheet
 
 
 
@@ -65,11 +65,11 @@
 
 
 
-* &#x09;It is a cloud based storage service that provide durable high performance block 
+* &#x09;It is a cloud based storage service that provide durable high performance block
 
 &#x09;storage for use with Amazon EC2 instances.
 
-&#x09;		
+&#x09;
 
 * &#x09;It works like a virtual hard drive allowing you to store and access data even
 
@@ -77,14 +77,14 @@
 
 
 
-* &#x09;Region \& AZ specific 
-* &#x09;Build in Redundancy 
+* &#x09;Region \& AZ specific
+* &#x09;Build in Redundancy
 * &#x09;	EBS volumes are automatically replicated within the same Availability
 * &#x09;	Zone to prevent data loss due to hardware failures.
 * &#x09;Different Volume Types
 * &#x09;	gp2/3,io1 etc
 * &#x09;Allow Encryption \& Snapshot for backup
-* &#x09;Scalable (Volume can be resizable) 
+* &#x09;Scalable (Volume can be resizable)
 * &#x09;	No Data loss will occur during resizing
 * &#x09;	No need to restart the EC2 instance during the process
 
@@ -92,7 +92,7 @@
 
 6\. AWS EBS Snapshot
 
-&#x09;What if we want copy our data to 
+&#x09;What if we want copy our data to
 
 &#x09;	New AZ
 
