@@ -1,4 +1,4 @@
-#  		  Linux Cheat Sheet
+#  		     Linux Cheat Sheet
 
 
 

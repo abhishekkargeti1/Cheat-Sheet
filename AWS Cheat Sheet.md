@@ -1,4 +1,4 @@
-# &#x09;	    AWS Cheat Sheet
+# &#x09;	      AWS Cheat Sheet
 
 
 
@@ -24,6 +24,14 @@
 2.1 AWS IAM list-users (To get number of users)
 
 &#x09;2.2 AWS configure (To setup cli in local system )
+
+
+
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86\_64.zip" -o "awscliv2.zip"
+
+unzip awscliv2.zip
+
+sudo ./aws/install
 
 
 

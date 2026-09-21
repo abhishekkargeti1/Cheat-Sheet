@@ -1564,31 +1564,31 @@ Call back url https://<Your Domain Name>/api/dex/callback
 
 &#x20;   **p, role:repo-admin, applications, create, \*/\*, allow**
 
-&#x20;   **p, role:repo-admin, applications, get,    \*/\*, allow**  
+&#x20;   **p, role:repo-admin, applications, get,    \*/\*, allow**
 
-&#x20;   **p, role:repo-admin, applications, update, \*/\*, allow**   
+&#x20;   **p, role:repo-admin, applications, update, \*/\*, allow**
 
-&#x20;   **p, role:repo-admin, applications, sync,   \*/\*, allow**   
+&#x20;   **p, role:repo-admin, applications, sync,   \*/\*, allow**
 
-&#x20;   **p, role:repo-admin, applications, delete, \*/\*, allow**   
+&#x20;   **p, role:repo-admin, applications, delete, \*/\*, allow**
 
-&#x20;   **p, role:repo-admin, repositories, create, \*/\*, allow**   
+&#x20;   **p, role:repo-admin, repositories, create, \*/\*, allow**
 
-&#x20;   **p, role:repo-admin, repositories, \*, \*/\*, allow**        
+&#x20;   **p, role:repo-admin, repositories, \*, \*/\*, allow**
 
-&#x20;   **p, role:repo-admin, projects, \*, \*, allow**              
+&#x20;   **p, role:repo-admin, projects, \*, \*, allow**
 
 
 
 &#x20;   **# Bind by email (fallback)**
 
-&#x20;   **g, <your-github-email>, role:repo-admin**                
+&#x20;   **g, <your-github-email>, role:repo-admin**
 
 
 
 &#x20;   **# Keep org binding for when it works**
 
-&#x20;   **g, <your-github-org>:members, role:repo-admin**         
+&#x20;   **g, <your-github-org>:members, role:repo-admin**
 
 
 
@@ -1607,12 +1607,4 @@ Call back url https://<Your Domain Name>/api/dex/callback
 
 
 &#x20;
-
-
-
-
-
-
-
-
 
