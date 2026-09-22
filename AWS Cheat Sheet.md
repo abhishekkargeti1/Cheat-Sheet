@@ -27,11 +27,27 @@
 
 
 
-curl "https://awscli.amazonaws.com/awscli-exe-linux-x86\_64.zip" -o "awscliv2.zip"
 
-unzip awscliv2.zip
 
-sudo ./aws/install
+###### **(Linux)**
+
+###### **curl "https://awscli.amazonaws.com/awscli-exe-linux-x86\_64.zip" -o "awscliv2.zip"**
+
+###### **unzip awscliv2.zip**
+
+###### **sudo ./aws/install**  
+
+###### 
+
+###### **(Windows)**
+
+###### 
+
+###### 
+
+###### **choco install awscli -y   (In powershell administrator mode)**
+
+
 
 
 

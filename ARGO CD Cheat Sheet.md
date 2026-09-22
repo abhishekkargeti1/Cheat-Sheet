@@ -1390,7 +1390,7 @@ Step 10 Create argocd-ingress.yaml with your domain (replace argocd.yourdomain.c
 
 
 
-Step 11: Update DNS and Access ArgoCD
+Step 11:		 Update DNS and Access ArgoCD
 
 
 

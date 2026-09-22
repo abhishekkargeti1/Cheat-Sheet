@@ -52,5 +52,57 @@
 
 
 
-* terraform destroy / terraform destroy -auto-approve
+* terraform destroy / terraform destroy -auto-approve /  terraform destroy --target=<name of the state list> -auto-approve
+
+&#x20;
+
+
+
+##### &#x20;                                   **State Management Command**
+
+
+
+
+
+* **To get list of state**
+
+&#x20;
+
+* terraform state list
+
+&#x20;
+
+* **To Refresh the State of the Terraform**
+
+&#x20;
+
+* terraform refresh
+
+
+
+* **To Remove the state link** 
+
+
+
+* terraform state rm <name of the resource> 
+
+
+
+
+
+
+
+
+
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+
+
+
+* **To format all the .tf files**
+
+
+
+* terraform fmt
+
+
 
