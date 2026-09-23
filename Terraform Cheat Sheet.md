@@ -1,4 +1,4 @@
-# &#x09;	    Terraform Cheat Sheet
+# &#x20;                   Terraform Cheat Sheet
 
 
 
@@ -8,9 +8,11 @@
 
 
 
-* wget -O - https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
-* echo "deb \[arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(grep -oP '(?<=UBUNTU\_CODENAME=).\*' /etc/os-release || lsb\_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
-* sudo apt update \&\& sudo apt install terraform
+wget -O - https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+
+echo "deb \[arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(grep -oP '(?<=UBUNTU\_CODENAME=).\*' /etc/os-release || lsb\_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+
+sudo apt update \&\& sudo apt install terraform
 
 
 
@@ -20,7 +22,7 @@
 
 
 
-&#x20;   terraform init
+* terraform init
 
 
 
@@ -28,7 +30,7 @@
 
 
 
-&#x20;   terraform validate
+* terraform validate
 
 
 
@@ -58,7 +60,7 @@
 
 
 
-##### &#x20;                                   **State Management Command**
+##### &#x20;                                **State Management Command**
 
 
 
@@ -66,7 +68,7 @@
 
 * **To get list of state**
 
-&#x20;
+
 
 * terraform state list
 
@@ -80,19 +82,27 @@
 
 
 
-* **To Remove the state link** 
+* **To Remove the state link**
 
 
 
-* terraform state rm <name of the resource> 
+* terraform state rm <name of the resource>
+
+&#x20;
+
+* **To check the description of a particular state**
+
+&#x20;
+
+* terraform state show <name of the resource>
 
 
 
+* **To import any thing from cloud to local**
 
 
 
-
-
+* terraform import <name of the resource>
 
 \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
@@ -103,6 +113,32 @@
 
 
 * terraform fmt
+
+
+
+* **To Create a workspace** 
+
+&#x20;
+
+* terraform workspace new <workspace name>
+
+
+
+* **To list a workspaces**
+
+&#x20;
+
+* terraform workspace list
+
+
+
+* **To select  a workspaces**
+
+&#x20;
+
+* terraform workspace select <workspace name>
+
+
 
 
 
