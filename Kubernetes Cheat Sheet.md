@@ -1,4 +1,4 @@
-# &#x09;	  Kubernetes Cheat Sheet
+# &#x09;	                Kubernetes Cheat Sheet
 
 
 
@@ -872,4 +872,14 @@ istioctl dashboard kiali (if you want to access the dashboard in local machine a
 ssh -i "C:\\path\\to\\your-key.pem" -L 20001:localhost:20001 ubuntu@YOUR\_EC2\_PUBLIC\_IP
 
 http://localhost:20001/kiali
+
+
+
+
+
+
+
+
+
+(To access eks in cli ) aws eks update-kubeconfig --name <eks cluster name> --region <region name>
 

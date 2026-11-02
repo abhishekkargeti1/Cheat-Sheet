@@ -1,4 +1,4 @@
-# &#x09;	      AWS Cheat Sheet
+# &#x09;	                  AWS Cheat Sheet
 
 
 
@@ -35,7 +35,7 @@
 
 ###### **unzip awscliv2.zip**
 
-###### **sudo ./aws/install**  
+###### **sudo ./aws/install**
 
 ###### 
 

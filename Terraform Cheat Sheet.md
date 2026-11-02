@@ -1,4 +1,4 @@
-# &#x20;                   Terraform Cheat Sheet
+# &#x20;                              Terraform Cheat Sheet
 
 
 
@@ -116,7 +116,7 @@ sudo apt update \&\& sudo apt install terraform
 
 
 
-* **To Create a workspace** 
+* **To Create a workspace**
 
 &#x20;
 
@@ -137,8 +137,4 @@ sudo apt update \&\& sudo apt install terraform
 &#x20;
 
 * terraform workspace select <workspace name>
-
-
-
-
 

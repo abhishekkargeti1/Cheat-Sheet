@@ -1,4 +1,4 @@
-# &#x09;	    ARGO CD Cheat Sheet
+# &#x09;	                   ARGO CD Cheat Sheet
 
 
 
@@ -48,7 +48,9 @@ kubectl get svc -n argocd
 
 kubectl port-forward svc/argocd-server -n argocd 8080:443 --address=0.0.0.0 \&
 
-username = admin password = kubectl get secret argocd-initial-admin-secret -n argocd -o jsonpath="{.data.password}" | base64 -d \&\& echo
+
+
+username = admin password = **kubectl get secret argocd-initial-admin-secret -n argocd -o jsonpath="{.data.password}" | base64 -d \&\& echo**
 
 
 
